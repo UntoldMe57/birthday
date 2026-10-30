@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    text-align: center;
+    color: white;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+/* Dark overlay for better text visibility */
+body::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0, 60, 120, 0.35);
+    top:0;
+    left:0;
+    pointer-events: none;   /* 🔥 THIS FIXES EVERYTHING */
+}
+
+.center {
+    margin-top: 150px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+}
+
+input {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+.puzzle{
+    width:300px;
+    height:300px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    grid-template-rows:repeat(3,1fr);
+    gap:2px;
+    position:relative;
+    z-index:2;
+}
+
+.tile{
+    width:100px;
+    height:100px;
+    cursor:pointer;
+}
+
+
+.tile:active{
+    cursor:grabbing;
+}

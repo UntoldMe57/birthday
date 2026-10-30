@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Surprise ❤️</title>
+
+    <style>
+        body {
+            margin: 0;
+            background-image: url("last.jpg");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            font-family: 'Cormorant Garamond', serif;
+            overflow: hidden;
+        }
+
+        /* Center content */
+
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+        }
+
+        /* Button */
+
+        button {
+            padding: 14px 40px;
+            font-size: 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            background: linear-gradient(45deg, #ff6fa5, #ff2e82);
+            color: white;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.08);
+        }
+
+        /* Video Section */
+
+        #videoSection {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: black;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Video Full Screen */
+
+        #videoSection video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="center" id="textSection">
+        <h1>My Beautiful kannamma ❤️</h1>
+        <p>
+            From the first day I saw you... <br> My life became more colorful 🌈 <br><br> Every smile of yours means the
+            world to me 💕 <br><br> I love you always... Thank you for coming into my life.
+        </p>
+
+    </div>
+
+    <div id="videoSection">
+        <video id="surpriseVideo" controls>
+            <source src="proposal.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <script>
+        function openSurprise() {
+
+            // Hide text
+            document.getElementById("textSection").style.display = "none";
+
+            // Show video
+            document.getElementById("videoSection").style.display = "flex";
+
+            // Play video manually
+            const video = document.getElementById("surpriseVideo");
+            video.play();
+        }
+    </script>
+
+</body>
+
+</html>

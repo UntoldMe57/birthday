@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>From 2023 to Forever 💜</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Background Image */
+
+        body {
+            background: url("intro.png") center/cover no-repeat fixed;
+            position: relative;
+        }
+
+        /* FULL Purple Overlay */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            /* Softer purple overlay */
+            background: linear-gradient(rgba(70, 0, 110, 0.55), rgba(120, 0, 160, 0.55));
+            /* Less blur so image shows more */
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            z-index: 0;
+        }
+
+        /* Main Wrapper */
+
+        .main-wrapper {
+            position: relative;
+            z-index: 2;
+            padding: 120px 60px 160px 60px;
+        }
+
+        /* Headline */
+
+        .main-title {
+            text-align: center;
+            font-size: 64px;
+            font-weight: 700;
+            color: #f3d9ff;
+            letter-spacing: 4px;
+            margin-bottom: 70px;
+            text-shadow: 0 0 25px rgba(200, 120, 255, 0.7);
+            animation: fadeDown 1s ease;
+        }
+
+        /* Grid Layout */
+
+        .love-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 35px 60px;
+        }
+
+        /* Love Cards */
+
+        .love-card {
+            background: linear-gradient(145deg, #6a0dad, #7b1fa2);
+            padding: 30px;
+            border-radius: 20px;
+            color: #f6e6ff;
+            font-size: 20px;
+            line-height: 1.6;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            transition: 0.4s ease;
+            position: relative;
+            animation: fadeUp 1s ease;
+        }
+
+        .love-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .love-card.active {
+            transform: scale(1.07);
+            z-index: 10;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Continue Button */
+
+        .continue-btn {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 16px 55px;
+            font-size: 20px;
+            border: none;
+            border-radius: 40px;
+            background: linear-gradient(90deg, #b967ff, #ff5ea8);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            transition: 0.3s;
+            z-index: 5;
+        }
+
+        .continue-btn:hover {
+            transform: translateX(-50%) scale(1.08);
+        }
+
+        /* Animations */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-wrapper">
+
+        <div class="main-title">
+            FROM 2023 TO FOREVER… 💜
+        </div>
+
+        <div class="love-grid">
+
+            <div class="love-card">
+                From 2023 to forever… 3 years of love, laughter, tears, fights, growth, and choosing each other every
+                single day. ❤️
+            </div>
+
+            <div class="love-card">
+                We didn’t just fall in love… We stayed in love. Through every struggle, every storm, every test — we
+                held hands tighter. 🤍
+            </div>
+
+            <div class="love-card">
+                3 years ago, we started as a love story… Next year, we turn it into a forever promise. 💍✨
+            </div>
+
+            <div class="love-card">
+                We fought the world, we fought circumstances, But we never fought against our love. ❤️
+            </div>
+
+            <div class="love-card">
+                From being each other’s secret smile To becoming each other’s forever home. 🏡💕
+            </div>
+
+            <div class="love-card">
+                Temporary Fightings are not the End of our Relation. Our permanent love is the new beggining for every
+                day. 🌹
+            </div>
+
+            <div class="love-card">
+                We struggled, we cried, we waited… And now we’re stepping into forever — together. 🤍
+            </div>
+
+            <div class="love-card">
+                2023: “Oye!” 2026: “I can’t imagine my life without you kannamma” 💖
+            </div>
+
+            <div class="love-card">
+                We grew up together, we healed together, And now we’ll build our future together. 💫
+            </div>
+
+            <div class="love-card">
+                3 years of love. One lifetime to go. ❤️♾️
+            </div>
+
+        </div>
+
+    </div>
+
+    <button class="continue-btn" onclick="nextPage()">
+        Continue 💕
+    </button>
+
+    <script>
+        /* Click to bring card front */
+        document.querySelectorAll('.love-card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.love-card').forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+            });
+        });
+
+        function nextPage() {
+            window.location.href = "page7.html";
+        }
+    </script>
+
+</body>
+
+</html>

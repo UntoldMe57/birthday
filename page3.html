@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Find Our Special Memory 💚</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            height: 80vh;
+            background: url("105536.jpg") center/cover no-repeat;
+            font-family: 'Cormorant Garamond', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Blur background only */
+
+        .blur-bg .game-area {
+            filter: blur(8px);
+        }
+
+        .game-area {
+            text-align: center;
+            color: #b8f5d4;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .chances {
+            font-size: 22px;
+            margin-bottom: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 120px);
+            gap: 25px;
+            justify-content: center;
+        }
+
+        .card {
+            width: 120px;
+            height: 160px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+
+        .card.flip .inner {
+            transform: rotateY(180deg);
+        }
+
+        .front,
+        .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .front {
+            background: #145c3a;
+            color: #7fffd4;
+            font-size: 28px;
+        }
+
+        .back {
+            background: #0b3d2a;
+            color: #d4ffe9;
+            transform: rotateY(180deg);
+        }
+
+        /* POPUP */
+        /* .popup {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 9999;
+        } */
+
+        .popup {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 9999;
+            /* New fixes */
+            overflow-y: auto;
+            padding: 20px 12px;
+            box-sizing: border-box;
+        }
+
+        /* .popup-box {
+            background: #0f5132;
+            padding: 40px;
+            border-radius: 20px;
+            width: 420px;
+            max-width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            animation: pop 0.4s ease;
+        } */
+
+        .popup-box {
+            background: #0f5132;
+            padding: 30px;
+            border-radius: 20px;
+            width: 420px;
+            max-width: 90%;
+            /* New fixes */
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+            box-sizing: border-box;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            animation: pop 0.4s ease;
+        }
+
+        /* .popup-box img {
+            width: 260px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        } */
+
+        .popup-box img {
+            width: 100%;
+            max-width: 260px;
+            max-height: 30vh;
+            object-fit: contain;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .popup-text {
+            font-size: 20px;
+            line-height: 1.6;
+            color: #d2ffe7;
+            margin-bottom: 25px;
+        }
+
+        .continue-btn {
+            padding: 14px 40px;
+            background: #1abc9c;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .continue-btn:hover {
+            background: #16a085;
+            transform: scale(1.05);
+        }
+
+        @keyframes pop {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* ===== Smooth Bottom Entry Animation ===== */
+
+        .game-area>* {
+            opacity: 0;
+            transform: translateY(60px);
+            animation: riseUp 1s ease forwards;
+        }
+
+        /* Stagger animation */
+
+        .game-area h1 {
+            animation-delay: 0.2s;
+        }
+
+        .game-area .chances {
+            animation-delay: 0.4s;
+        }
+
+        .game-area .grid {
+            animation-delay: 0.7s;
+        }
+
+        @keyframes riseUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .popup {
+                align-items: flex-start;
+            }
+
+            .popup-box {
+                width: 100%;
+                max-width: 100%;
+                padding: 20px;
+            }
+
+            .popup-text {
+                font-size: 18px;
+            }
+
+            .continue-btn {
+                width: 100%;
+                padding: 14px;
+            }
+        }
+
+        /* Hide scrollbar but keep scrolling enabled */
+
+        .popup,
+        .popup-box {
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
+            /* Internet Explorer */
+        }
+
+        .popup::-webkit-scrollbar,
+        .popup-box::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Edge, Safari */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="game-area">
+
+        <h1>Find Our Special Memory 💚</h1>
+        <div class="chances">Chances Left: <span id="chanceCount">3</span></div>
+
+        <div class="grid" id="grid"></div>
+
+    </div>
+
+
+    <!-- POPUP -->
+    <div class="popup" id="popup">
+
+        <div class="popup-box">
+
+            <img src="sur.jpg">
+
+            <div class="popup-text">
+                💚 You know this is our 1st photo after my JOB<br><br> That we took in Station<br><br> And my most
+                Favourite picture with lot of happiness 💕
+            </div>
+
+            <button class="continue-btn" onclick="goNext()">
+                Continue 💚
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+        const grid = document.getElementById("grid");
+        const chanceText = document.getElementById("chanceCount");
+        let chances = 3;
+        let correctIndex = Math.floor(Math.random() * 6);
+
+        const wrongMessages = [
+            "Babs try one more 💚",
+            "Babieeee try again 💕",
+            "Babs po now it will reshuffle 💔"
+        ];
+
+        function createCards() {
+            grid.innerHTML = "";
+            correctIndex = Math.floor(Math.random() * 6);
+
+            for (let i = 0; i < 6; i++) {
+
+                const card = document.createElement("div");
+                card.className = "card";
+
+                const inner = document.createElement("div");
+                inner.className = "inner";
+
+                const front = document.createElement("div");
+                front.className = "front";
+                front.innerHTML = "💚";
+
+                const back = document.createElement("div");
+                back.className = "back";
+
+                inner.appendChild(front);
+                inner.appendChild(back);
+                card.appendChild(inner);
+                grid.appendChild(card);
+
+                card.onclick = function () {
+
+                    if (card.classList.contains("flip")) return;
+
+                    card.classList.add("flip");
+
+                    if (i === correctIndex) {
+
+                        setTimeout(() => {
+                            showPopup();
+                        }, 500);
+
+                    } else {
+
+                        back.innerHTML = wrongMessages[3 - chances];
+
+                        chances--;
+                        chanceText.innerText = chances;
+
+                        if (chances === 0) {
+                            setTimeout(() => {
+                                alert("Reshuffling 💚");
+                                chances = 3;
+                                chanceText.innerText = chances;
+                                createCards();
+                            }, 1200);
+                        }
+                    }
+                };
+            }
+        }
+
+        function showPopup() {
+            document.body.classList.add("blur-bg");
+            document.getElementById("popup").style.display = "flex";
+        }
+
+        function goNext() {
+            window.location.href = "page4.html";
+        }
+
+        createCards();
+    </script>
+
+</body>
+
+</html>
